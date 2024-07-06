@@ -8,12 +8,14 @@
     <!-- script tags -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/bc94aa2890.js" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- script tags end here -->
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <!-- style sheet -->
+    <!-- CSS style sheet -->
     <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
@@ -37,9 +39,27 @@
             width: 100%;
             height: auto;
         }
+
+        .review {
+            display: none;
+        }
+        .review.active {
+            display: block;
+        }
+        .slider2 {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+        .slider2 > div {
+            scroll-snap-align: start;
+            flex: none;
+            width: 100%;
+        }
     </style>
 </head>
 <body class="bg-slate-50">
+
     <!-- top section starts -->
     <section class="bg-slate-200 flex-wrap md:h-10 h-12 flex items-center md:justify-end justify-center">
         <div class="flex mx-14 items-center font-semibold">
@@ -49,21 +69,19 @@
             <a class="ml-6 text-xs md:text-[14px]" href="#">BLOG</a>
         </div>
     </section>
-
-
     <!-- navbar starts -->
     <nav class="bg-slate-100 flex-wrap md:h-20 h-10 flex items-center  justify-end md:items-center w-full"  id="nav-bar-container">
         <div class="flex justify-between items-center">
             <span class="cursor-pointer text-3xl font-bold md:mx-0 mx-4 md:hidden block dark:text-white duration-500" onclick="toggleMenu()">
-                <ion-icon name="menu-outline"></ion-icon>
+                <ion-icon class="text-black" name="menu-outline"></ion-icon>
             </span>
             </span>
             <span class="cursor-pointer text-3xl font-bold md:mx-0 mx-4 md:hidden block dark:text-white duration-500">
                 <!-- Navlinks Menu -->
-                <ion-icon name="menu-outline" onclick="Menu(this)"></ion-icon>
+                <ion-icon class="hidden md:block" name="menu-outline" onclick="Menu(this)"></ion-icon>
             </span>
         </div>
-        <div class="flex  items-center font-semibold">
+        <div class="flex md:block  items-center font-semibold">
             <a class="ml-6 mx-20" href="#">ABOUT US</a>
             <a class="ml-6 mx-20" href="#">SOLUTIONS</a>
             <a class="ml-6 mx-20" href="#">PRODUCTS</a>
@@ -73,7 +91,7 @@
     
     <!-- navbar ends -->
 
-    <section class="flex md:h-40 bg-slate-100 justify-center items-center">
+    <section class="flex md:h-40 bg-slate-100 gap-8 justify-center w-full h-full my-8 items-center">
         
             <div class="flex flex-col md:mx-5 md:h-32 md:px-5 rounded-3xl shadow-lg shadow-slate-500  border-[1px] justify-center items-center">
                 <img src="./images/building.png" alt="">
@@ -105,7 +123,7 @@
             <p class="mx-5">HOW CAN I HELP YOU?</p>
             <i class="mx-5 fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="my-7 flex items-center">
+        <div class="my-7 flex md:flex-row flex-wrap gap-4 justify-center items-center">
             <p class="w-52 text-center shadow-xl shadow-red-200 bg-red-700 text-white font-semibold mx-4 rounded-full py-3 border-[1px] border-slate-300 ">Lorem ipsum dolor sit.</p>
             <p class="w-52 text-center mx-4 rounded-full font-semibold py-3 border-[2px] border-slate-300 ">Lorem, ipsum dolor.</p>
             <p class="w-52 text-center mx-4 rounded-full font-semibold py-3 border-[2px] border-slate-300 ">Lorem, ipsum.</p>
@@ -114,6 +132,7 @@
         </div>
     </section>
 
+    <!-- Header Section -->
     <section class="bg-gray-100 p-5 text-center md:flex flex-col md:flex-row">
         <form class="space-y-2 mx-8">
             <div class="text-lg my-7 font-semibold">GET A CALL BACK <span class="highlight">IN 5 SECONDS</span></div>
@@ -122,20 +141,25 @@
             <button type="submit" class="w-full md:my-7 my-10 p-2 bg-black text-white hover:bg-red-700 ease-in-out duration-100  rounded">SUBMIT</button>
         </form>
 
-        <div class="slider-container rounded-lg shadow-lg md:my-0 my-10">
-            <div class="slider">
-                <div class="slide">
-                    <div class="relative">
-                        <img src="./images/header-img.png" alt="Slide 1" class="rounded-lg">
-                        <div class="absolute top-36 left-0 p-6 items-center  text-black ">
-                            <h1 class="text-3xl text-left font-bold">LOREM IPSUM LOREM</h1>
-                            <p class="mt-2 text-left">Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit. Vestibulum <br>  eget dictum urna. Nulla facilisi. Nullam in ultrices erat.</p>
-                        </div>
-                    </div>
+        <div class="slider-container w-full  overflow-hidden relative">
+            <div class="slider w-full">
+                <div class="absolute top-36 left-0 p-6 items-center  text-black ">
+                    <h1 class="text-3xl text-left font-bold">LOREM IPSUM LOREM</h1>
+                    <p class="mt-2 text-left">Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit. Vestibulum <br>  eget dictum urna. Nulla facilisi. Nullam in ultrices erat.</p>
                 </div>
-                <!-- Additional slides can be added here -->
-
+                <div class="slide flex items-center w-full justify-center">
+                    <img src="./images/header-img.png" alt="Image 1" class="w-auto h-full object-cover">
+                </div>
+                <div class="slide flex items-center  w-full justify-center bg-gray-300">
+                    <img src="./images/header-img.png" alt="Image 1" class="w-full h-auto object-cover">
+                </div>
+                <div class="slide flex items-center w-full  justify-center bg-gray-400">
+                    <img src="./images/header-img.png" alt="Image 1" class="w-full h-auto object-cover">
+                </div>
             </div>
+            <button id="prev" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2">Prev</button>
+            <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 p-2">Next</button>
+        </div>
     </section>
 
     <section class="p-5">
@@ -144,21 +168,21 @@
         <!-- Services -->
         <div class="mt-10 text-center my-8">
             <h2 class="text-xl font-semibold mb-5">LOREM IPSUM DOLOR SIT AMET</h2>
-            <div class="grid  grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="grid items-center grid-cols-1 md:grid-cols-3 gap-2">
                 <!-- Service 1 -->
-                <div class="font-semibold">
+                <div class="font-semibold flex justify-center items-center flex-col">
                      <h2>Lorem, ipsum.</h2>
-                     <div class="flex my-7 w-[400px] bg-slate-300 rounded-xl p-5">
+                     <div class="flex my-7 w-[400px] bg-slate-300 rounded-xl justify-center p-5">
                         <img class="w-[150px]" src="./images/helicopter.png" alt="">
                         <p class="text-left mx-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, fugit.</p>
                         <a class="italic" href="">
                             Read More
                         </a>
                     </div> 
-                        <button class="bg-slate-600 py-2 px-7 rounded-lg text-white shadow-md shadow-slate-400"> Book Now</button>
+                        <button class="bg-slate-600 py-2 px-7 w-[190px] rounded-lg text-white shadow-md shadow-slate-400"> Book Now</button>
                 </div>
 
-                 <div class="md:relative md:top-5 top-0 font-semibold">
+                 <div class="md:relative md:top-5 top-0 font-semibold flex justify-center items-center flex-col">
                      <h2>Lorem, ipsum.</h2>
                      <div class="flex my-7 w-[400px] bg-red-600 rounded-xl p-5">
                         <img class="w-[150px]" src="./images/helicopter.png" alt="">
@@ -167,10 +191,10 @@
                             Read More
                         </a>
                     </div> 
-                        <button class="bg-red-600 py-2 px-7 rounded-lg text-white shadow-md shadow-slate-400"> Book Now</button>
+                        <button class="bg-red-600 py-2 px-7 w-[190px]  rounded-lg text-white shadow-md shadow-slate-400"> Book Now</button>
                      
                  </div>
-                 <div class="font-semibold">
+                 <div class="font-semibold flex justify-center items-center flex-col">
                     <h2>Lorem, ipsum.</h2>
                     <div class="flex my-7 w-[400px] bg-slate-300 rounded-xl p-5">
                        <img class="w-[150px]" src="./images/helicopter.png" alt="">
@@ -179,57 +203,398 @@
                            Read More
                        </a>
                    </div> 
-                       <button class="bg-slate-600 py-2 px-7 rounded-lg text-white shadow-md shadow-slate-400"> Book Now</button>
+                       <button class="bg-slate-600 py-2 w-[190px]  px-7 rounded-lg text-white shadow-md shadow-slate-400"> Book Now</button>
                  </div>
                 
             </div>
         </div>
-    </section>    
 
 
+    <!-- About Us -->
+        <div class="mt-10 p-5 bg-gray-200  rounded-3xl">
+            <div class="md:flex md:space-x-5">
+                <img src="./images/red-ambulance.png" alt="About Us" class="mb-5 md:mb-0 md:w-1/4 rounded">
+                <div class="md:w-1/2">
+                    <h2 class="text-xl font-semibold mb-3">ABOUT US</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget dictum urna.</p>
+                    <p class="mt-3">Nulla tortor orci, egestas in sollicitudin in, aliquam nec velit.</p>
+                    <p class="mt-3">Nulla tortor orci, egestas in sollicitudin in, aliquam nec velit. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Earum repudiandae beatae necessitatibus nisi tempore dolorum facere optio id quis. Ipsum assumenda odit porro enim laborum illum numquam est. Reprehenderit harum in hic iusto veniam dolorem exercitationem sed, similique dolorum distinctio commodi id eos animi facilis sunt deleniti praesentium ullam! Aliquid!</p>
+                    <p class="mt-3">Nulla tortor orci, egestas in sollicitudin in, aliquam nec velit.</p>
+                    
+                    <div class="p-2">
+                        <a href="#" class="inline-block mt-3 p-2 bg-black text-white rounded-full">READ MORE
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Stats -->
+    <div class="mt-5 bg-slate-200 rounded-2xl mx-5 p-5">
+        <div class="flex justify-around text-center">
+            <div>
+                <h3 class="text-2xl font-semibold">262K+</h3>
+                <p class="text-gray-600">Lives Touched</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold">94%</h3>
+                <p class="text-gray-600">Satisfaction Rate</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold">550+</h3>
+                <p class="text-gray-600">Cities</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold">300+</h3>
+                <p class="text-gray-600">Partnered Hospitals</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold">5000+</h3>
+                <p class="text-gray-600">Fleet of Ambulances</p>
+            </div>
+        </div>
+    </div>    
 
+<!-- Tailored Solutions Starts -->
+    <section class="flex flex-col mx-5 justify-center mt-24">
+    <h1 class="text-center text-3xl font-bold">OUR TAILORED SOLUTIONS</h1>
+    <div class="flex gap-6 md:flex-row flex-col justify-center mt-6">
+        <div class="flex flex-col justify-center items-center z-10 px-6 bg-slate-200 rounded-3xl">
+                    <h1 class="text-center font-semibold mt-2">LOREM</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium a incidunt neque, accusantium, tenetur ipsam doloremque repellat aliquid voluptates recusandae reprehenderit itaque quidem dolor ipsa beatae aperiam dolores nulla aspernatur provident laborum quisquam error quia modi vero. Modi unde itaque ducimus error quo sint dolor magni? Odio id illum minima.</p>
+                    <button class="inline-block mt-3 p-2 bg-black text-white rounded-full w-[300px]">READ MORE</button>
+                    <img class="relative w-[200px] top-10 left-[140px] z-11" src="./images/ellipse1.png" alt="">
+                </div>
+                <div class="flex flex-col justify-center items-center z-10 px-6 bg-slate-200 rounded-3xl shadow-md shadow-slate-500">
+                    <h1 class="text-center font-semibold mt-4">LOREM</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium a incidunt neque, accusantium, tenetur ipsam doloremque repellat aliquid voluptates recusandae reprehenderit itaque quidem dolor ipsa beatae aperiam dolores nulla aspernatur provident laborum quisquam error quia modi vero. Modi unde itaque ducimus error quo sint dolor magni? Odio id illum minima.</p>
+                    <button class="inline-block mt-3 p-2 bg-black text-white rounded-full w-[300px]">READ MORE</button>
+                    <img class="relative w-[250px] top-16 left-[155px] z-11" src="./images/tailored-solutions.png" alt="">
+                </div>
+                <div class="flex flex-col justify-center items-center z-10 px-6 bg-slate-200 rounded-3xl">
+                    <h1 class="text-center font-semibold mt-2">LOREM</h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium a incidunt neque, accusantium, tenetur ipsam doloremque repellat aliquid voluptates recusandae reprehenderit itaque quidem dolor ipsa beatae aperiam dolores nulla aspernatur provident laborum quisquam error quia modi vero. Modi unde itaque ducimus error quo sint dolor magni? Odio id illum minima.</p>
+                    <button class="inline-block mt-3 p-2 bg-black text-white rounded-full w-[300px]">READ MORE</button>
+                    <img class="relative w-[200px] top-10 left-[140px] z-11" src="./images/ellipse1.png" alt="">
+                </div>
+            </div>
+    </section>
+        
+<!-- Tailored Solutions Ends -->
 
+<!-- Products Container -->
 
-
-
-
-
-
-
-
-    <script>
-        let currentIndex = 0;
+<div class="mx-5 mt-20">
+    <h1 class="text-center text-3xl font-bold">PRODUCTS</h1>
+    <div class="product-container md:flex md:flex-row flex-col md:my-8 items-center justify-center my-10 gap-7">
+        <!-- Product 1 -->
+        <div class="w-[250px] h-[250px] border-2 p-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+        <!-- Product 2 -->
+        <div class="w-[250px] bg-red-500 text-white md:my-0 my-5 shadow-lg h-[250px] border-2 p-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+        <!-- Product 3 -->
+        <div class="w-[250px] h-[250px] border-2 p-5 md:my-0 my-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+        <!-- Product 4 -->
+        <div class="w-[250px] h-[250px] border-2 p-5 md:my-0 my-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+    </div>
     
-        function showSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            const totalSlides = slides.length;
-            const slider = document.querySelector('.slider');
-            
-            if (index >= totalSlides) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = totalSlides - 1;
-            } else {
-                currentIndex = index;
+    <div class="product-container md:flex md:flex-row flex-col md:my-0 my-5 justify-center md:mt-8 mt-5 gap-7">
+        <!-- Product 5 -->
+        <div class="w-[250px] h-[250px] border-2 p-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+        <!-- Product 6 -->
+        <div class="w-[250px] md:my-0 my-5 shadow-lg h-[250px] border-2 p-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+        <!-- Product 7 -->
+        <div class="w-[250px] h-[250px] border-2 p-5 md:my-0 my-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+        <!-- Product 8 -->
+        <div class="w-[250px] h-[250px] border-2 p-5 md:my-0 my-5 rounded-xl">
+            <h1 class="font-bold text-2xl">Lorem Ipsum</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dignissimos atque iste libero eius minima sit alias deserunt deleniti iure.</p>
+        </div>
+    </div>
+</div>
+<!-- Products Ends -->
+
+
+<!-- Partners Starts -->
+
+        <div class="my-7 md:my-16">
+            <h1 class="text-2xl font-semibold text-center">OUR ESTEEMED PARTNERS</h1>
+            <p class="text-center my-3">Exranding Our Reach by joining forces with hospitals and corporates.</p>
+
+            <div class="btns flex w-full justify-center">
+                <button class="font-bold mx-7 px-12 rounded-full border-[1px] py-3 border-black">Hospital</button>
+                <button class="font-bold mx-7 px-12 rounded-full py-3 bg-red-500 text-white">Enterprise</button>
+            </div>
+            <div class="slider">
+                <img src="./images/partners.png" class="my-9" alt="">
+            </div>
+        </div>
+
+<!-- Partners Ends -->
+
+
+<!-- Testimonials Start -->
+
+<div class="max-w-4xl w-full mx-auto p-8 bg-white my-6 rounded-lg shadow-md">
+    <h2 class="text-4xl font-bold text-center mb-6">TESTIMONIALS</h2>
+    <div class="flex justify-center mb-8">
+        <button id="partnerBtn" class="px-4 py-2 mx-3 border rounded-l-lg bg-white hover:bg-gray-100 focus:outline-none focus:bg-gray-200">PARTNER REVIEW</button>
+        <button id="customerBtn" class="px-4 py-2 mx-3 border rounded-r-lg bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:bg-red-700">CUSTOMER REVIEW</button>
+    </div>
+    <div class="review active" id="customerReview">
+        <div class="flex items-center mb-4">
+            <div class="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
+            <div class="h-2 w-2 rounded-full bg-gray-300 mr-2"></div>
+            <div class="h-2 w-2 rounded-full bg-gray-300"></div>
+        </div>
+        <blockquote class="text-gray-600 italic">
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum suspendisse. Ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis."
+        </blockquote>
+        <div class="mt-4">
+            <h5 class="font-bold text-red-500">Arvind Kumar</h5>
+            <p class="text-gray-500">Senior Doctor</p>
+            <div class="flex mt-2">
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+            </div>
+        </div>
+    </div>
+    <div class="review" id="partnerReview">
+        <!-- Partner review content can be added here -->
+        <div class="flex items-center mb-4">
+            <div class="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
+            <div class="h-2 w-2 rounded-full bg-gray-300 mr-2"></div>
+            <div class="h-2 w-2 rounded-full bg-gray-300"></div>
+        </div>
+        <blockquote class="text-gray-600 italic">
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum suspendisse. Ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis."
+        </blockquote>
+        <div class="mt-4">
+            <h5 class="font-bold text-red-500">John</h5>
+            <p class="text-gray-500">Senior Doctor</p>
+            <div class="flex mt-2">
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+                <span class="text-yellow-500">&#9733;</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Testimonials End -->
+
+
+
+<!-- Blogs Start -->
+
+    <div class="blogs-container">
+        <h1 class="text-center text-2xl my-6 font-semibold">BLOGS</h1>
+        <div class="max-w-7xl mx-auto p-4">
+            <div class="slider2">
+                <div class="p-4">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <img src="./images/blog1.png" alt="Image 1" class="rounded-lg mb-4">
+                        <h2 class="text-xl font-bold mb-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing pharetra scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing pharetra scelerisque.</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <img src="./images/blog2.png" alt="Image 2" class="rounded-lg mb-4">
+                        <h2 class="text-xl font-bold mb-2">Lorem ipsum Lorem ipsum</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing pharetra scelerisque.</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <img src="./images/blog3.png" alt="Image 3" class="rounded-lg mb-4">
+                        <h2 class="text-xl font-bold mb-2">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing pharetra scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing pharetra scelerisque.</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="bg-white rounded-lg shadow-lg p-6">
+                        <img src="./images/blog4.png" alt="Image 4" class="rounded-lg mb-4">
+                        <h2 class="text-xl font-bold mb-2">Lorem ipsum Lorem ipsum</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing pharetra scelerisque.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-4">
+                <button id="prev" class="px-4 py-2 mx-2 bg-red-500 text-white rounded">Prev</button>
+                <button id="next" class="px-4 py-2 mx-2 bg-red-500 text-white rounded">Next</button>
+            </div>
+        </div>
+    </div>
+
+<!-- Blogs End -->
+
+
+<!-- Contact Form Starts -->
+
+<div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl w-full relative">
+        <div class="absolute -bottom-4 left-0 right-0 mx-auto w-4/5 h-1 bg-red-500 rounded"></div>
+        <div class="md:flex md:space-x-8">
+            <div class="md:w-1/2">
+                <h2 class="text-2xl font-bold mb-4">SPEAK WITH US</h2>
+                <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                <p class="font-bold">CALL: 19696536989</p>
+                <p class="font-bold">MAIL: Airinfo@abc</p>
+            </div>
+            <div class="md:w-1/2">
+                <form action="#" method="POST">
+                    <div class="mb-4">
+                        <label for="name" class="block text-sm font-medium text-gray-700">NAME</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="call" class="block text-sm font-medium text-gray-700">CALL</label>
+                        <input type="text" id="call" name="call" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-sm font-medium text-gray-700">MESSAGE</label>
+                        <textarea id="message" name="message" rows="3" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-red-500 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        SUBMIT
+                        <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7-7 7" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="flex space-x-4 mt-8 justify-center">
+            <a href="#" class="text-gray-500 hover:text-gray-900"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-500 hover:text-gray-900"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-500 hover:text-gray-900"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-gray-500 hover:text-gray-900"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Form Ends -->
+
+
+
+<!-- Footer Section starts -->
+
+    <footer class="bg-gradient-to-r from-slate-900 to-red-900 text-white">
+        <div class="footer-main flex mx-9 justify-center">
+            <div class="mx-6 px-5">
+                <h2 class="py-6 font-bold text-xl">Address</h2>
+                <p>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Ratione, quae?</p>
+                <p class="my-7">Call: 999999999</p>
+                <p class="my-7">Mail: Airinfo@abc</p>
+
+                <div class="flex space-x-4 mt-8 py-7">
+                    <a href="#" class="text-slate-100 hover:text-gray-900"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-slate-100 hover:text-gray-900"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-slate-100 hover:text-gray-900"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-slate-100 hover:text-gray-900"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="mx-6 px-5">
+                <h2 class="py-6 font-bold text-xl">Quick Links</h2>
+                <div class="flex flex-col">
+                    <a class="py-3" href="#">Home</a>
+                    <a class="py-3" href="#">About Us</a>
+                    <a class="py-3" href="#">Our Partners</a>
+                    <a class="py-3" href="#">Our Presence</a>
+                    <a class="py-3" href="#">Products</a>
+                </div>
+            </div>
+            <div class="mx-6 px-5">
+                <h2 class="py-6 font-bold text-xl">Solutions</h2>
+                <div class="flex flex-col">
+                    <a class="py-3" href="#">Home</a>
+                    <a class="py-3" href="#">About Us</a>
+                    <a class="py-3" href="#">Our Partners</a>
+                    <a class="py-3" href="#">Our Presence</a>
+                    <a class="py-3" href="#">Products</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<!-- Footer Section ends -->
+
+
+<!-- JavaScript -->
+    <script>
+
+        // slider
+            let currentIndex = 0;
+        
+            function showSlide(index) {
+                const slides = document.querySelectorAll('.slide');
+                const totalSlides = slides.length;
+                const slider = document.querySelector('.slider');
+                
+                if (index >= totalSlides) {
+                    currentIndex = 0;
+                } else if (index < 0) {
+                    currentIndex = totalSlides - 1;
+                } else {
+                    currentIndex = index;
+                }
+                
+                const newTransform = `translateX(-${currentIndex * 100}%)`;
+                slider.style.transform = newTransform;
             }
-            
-            const newTransform = `translateX(-${currentIndex * 100}%)`;
-            slider.style.transform = newTransform;
-        }
-    
-        function nextSlide() {
-            showSlide(currentIndex + 1);
-        }
-    
-        document.addEventListener('DOMContentLoaded', () => {
-            setInterval(nextSlide, 3000); // Change slide every 3 seconds
-        });
-    </script>
-    <script>
-        function toggleMenu() {
+        
+            function nextSlide() {
+                showSlide(currentIndex + 1);
+            }
+        
+            document.addEventListener('DOMContentLoaded', () => {
+                setInterval(nextSlide, 3000); // Change slide every 3 seconds
+            });
+
+
+            function toggleMenu() {
             const menu = document.getElementById('nav-bar-container');
             menu.classList.toggle('hidden');
         }
+
+        // Testimonials
+        document.getElementById('partnerBtn').addEventListener('click', function() {
+            document.getElementById('customerReview').classList.remove('active');
+            document.getElementById('partnerReview').classList.add('active');
+        });
+        
+        document.getElementById('customerBtn').addEventListener('click', function() {
+            document.getElementById('partnerReview').classList.remove('active');
+            document.getElementById('customerReview').classList.add('active');
+        });
     </script>
 </body>
 </html>
